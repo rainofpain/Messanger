@@ -1,3 +1,6 @@
+instance/
+migrations/
+
 # Django #
 *.log
 *.pot
@@ -138,5 +141,3 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
-instance/
