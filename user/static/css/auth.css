@@ -1,0 +1,31 @@
+.auth-title{
+    font-size: 3.2vh;
+    font-weight: 600;
+    color: #070A1C;
+    font-family: var(--FontSemiBold);
+}
+.auth-input-title{
+    font-size: 1.4vh;
+    color: #71717A;
+    font-family: var(--FontRegular);
+}
+.auth-input{
+    padding: 0.8vh 0.7vw;
+    border: #E2E1EC solid 0.1vh;
+    border-radius: 0.375rem;
+}
+.auth-redirect-btn{
+    padding: 0.8vh 0.7vw;
+    border: #E2E1EC solid 0.1vh;
+    border-radius: 0.375rem;
+    background-color: white;
+    color: #0D133F;
+    font-size: 1.4vh;
+    font-family: var(--FontMedium);
+    font-weight: 500;
+}
+.auth-href-position{
+    position: absolute;
+    right: 4.3vw;
+    top: 3.2vh;
+}

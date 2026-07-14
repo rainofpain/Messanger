@@ -1,0 +1,25 @@
+:root{
+    --FontMedium : "medium" ;
+    --FontBold : "bold" ;
+    --FontRegular : "regular" ;
+    --FontSemiBold : "semi-bold";
+}
+
+@font-face {
+    font-family: "medium";
+    src: url(../fonts/Inter_18pt-Medium.ttf);
+}
+
+@font-face {
+    font-family: "bold";
+    src: url(../fonts/Inter_18pt-Bold.ttf);
+}
+
+@font-face {
+    font-family: "regular";
+    src: url(../fonts/Inter_18pt-Regular.ttf);
+}
+@font-face {
+    font-family: "semi-bold";
+    src: url(../fonts/Inter_18pt-SemiBold.ttf);
+}

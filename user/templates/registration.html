@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration 
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('user.static', filename = 'css/registration.css') }}">
+    <link rel="stylesheet" href="{{ url_for('user.static', filename = 'css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+    <a class = "auth-href-position" href="/authorization">
+        <button class="auth-redirect-btn">
+        Увійти
+        </button>
+    </a>
+    <p class="auth-title">Створити обліковий запис</p>
+    <div class="registration">
+        <p class= "auth-input-title">Введіть вашу електронну пошту нижче, щоб створити обліковий запис</p>
+        <form class = "registration-form" action="" method="post">
+            <input class = "auth-input" type="email" name="email" placeholder= "name@example.com">
+
+            <p class= "auth-input-title">Задайте ваш пароль нижче, щоб створити обліковий запис</p>
+
+            <input class = "auth-input" type="password" name="password" placeholder="***************">
+
+            <p class= "auth-input-title">Перевірка паролю</p>
+
+            <input class = "auth-input" type="password" name="confirm_password" placeholder="***************">
+
+            <button id = "registration-form-button" type="submit">Надіслати код підтвердження</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Registration 
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('user.static', filename = 'css/email_redirect.css') }}">
+    <link rel="stylesheet" href="{{ url_for('user.static', filename = 'css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+    <a class = "auth-href-position" href="/authorization">
+        <button class="auth-redirect-btn">
+        Увійти
+        </button>
+    </a>
+    <div class= "text-container">
+        <p class="auth-title">Успіх</p>
+        <span>
+            <p class= "auth-instruction">
+                Ми надіслали вам електронний лист з магічним посиланням для підтвердження вашого облікового запису. 
+            </p>
+            <p class="auth-instruction">
+                Будь ласка, перевірте свою поштову скриньку та натисніть на посилання.
+            </p>
+        </span>
+    </div>
+
+    <a href="https://mail.google.com/">
+        <button class="email-redirect-btn">
+        Відкрити електронну пошту
+        </button>
+    </a>
+
+{% endblock %}
