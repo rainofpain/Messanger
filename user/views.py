@@ -15,7 +15,7 @@ from Project.settings import MAIL_SENDER
 from .models import User
 
 
-def render_registration() -> dict:
+def render_registration():
     if flask.request.method == "POST":
         password = flask.request.form["password"]
         confirm_password = flask.request.form["confirm_password"]
@@ -80,7 +80,7 @@ def render_authorization():
     if not flask_login.current_user.is_authenticated:
         return flask.render_template("authorization.html")
     else:
-        return flask.redirect("/")
+        return flask.redirect("/chat")
     
 
 def confirm_email(token):
@@ -88,7 +88,7 @@ def confirm_email(token):
     try:
        
         email = serializer.loads(token, salt="email-confirm-salt")
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).scalar()
         user.confirmed_email = True
         DATABASE.session.commit()
     except:
@@ -97,5 +97,5 @@ def confirm_email(token):
     return flask.redirect("/authorization")
 
 def logout():
-    flask.session.clear()
+    flask_login.logout_user()
     return flask.redirect("/authorization")    

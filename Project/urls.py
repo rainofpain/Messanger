@@ -1,3 +1,4 @@
-import user
+import user, chat
 
-user.user_url_rules(user)
+user.url_rules(user)
+chat.url_rules(chat)

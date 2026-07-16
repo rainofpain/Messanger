@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/chat.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/settings_modal.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css' ) }}">
+</head>
+<body>
+    <div class= "modal-layout hidden">
+        {% include 'settings_modal.html'%}
+    </div>
+    <div class="chat-header">
+        <div class="chat-logo-container">
+            <img class="icon-size" src="{{ url_for('chat.static', filename='images/chat_logo.svg' ) }}" alt="">
+            <p class = "logo-title">Chat</p>
+        </div>
+        <div class = "header-menu">
+            <div id = "notifications" class= "menu-option-container">
+                <img class="icon-size" src="{{ url_for('chat.static', filename='images/notifications.svg' ) }}" alt="">
+            </div>
+            <div id = "settings" class= "menu-option-container">
+                <img class="icon-size" src="{{ url_for('chat.static', filename='images/settings.svg' ) }}" alt="">
+            </div>
+            <div class= "menu-option-container">
+                <img class="parent-height" src="{{ url_for('chat.static', filename='images/avatar.svg' ) }}" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('chat.static', filename='js/maxDate.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/settingsModal.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/headerMenu.js' ) }}"></script>
+</body>
+</html>

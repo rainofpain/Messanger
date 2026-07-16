@@ -1,0 +1,49 @@
+<div class="settigs-modal">
+    <div class="settings-modal-header">
+        <p class= "modal-header-title">Налаштування</p>
+        <img class= "modal-header-cross" src="{{url_for('chat.static', filename = 'images/cross.svg')}}" alt="">
+    </div>
+    <hr class = "blue-hr">
+    <div>Зображення профілю</div>
+    <form id = "user-data-form" class="settings-modal-form" action="" method="post">
+
+        <div class="settings-modal-input-container">
+            <p class="settings-modal-input-title">Ім'я</p>
+            <input class = "settings-modal-input" type = "text" name = "first_name">
+        </div>
+
+        <div class="settings-modal-input-container">
+            <p class="settings-modal-input-title">Прізвище</p>
+            <input class = "settings-modal-input" type = "text" name = "surname">
+        </div>
+
+        <div class="settings-modal-input-container">
+            <p class="settings-modal-input-title">Ім’я користувача</p>
+            <input class = "settings-modal-input" type = "text" name = "username">
+        </div>
+
+        <div class="settings-modal-input-container">
+            <p class="settings-modal-input-title">Стать</p>
+            <select id="gender-list" class="gender-select" name="gender">
+            <option value="" disabled selected>Оберіть вашу стать</option>
+            <option value="female">Жіноча</option>
+            <option value="male">Чоловіча</option>
+            </select>
+        </div>
+
+        <div class="settings-modal-input-container">
+            <p class="settings-modal-input-title">Вік</p>
+            <input type="date" id="birth-date" name="birthday"  min="1900-01-01">
+        </div>
+    </form>
+    <hr class="blue-hr">
+    <div class="delete-user-container">
+        <img class = "trash-img-size" src="{{url_for('chat.static', filename= 'images/trash.svg')}}" alt="">
+        <p class="settings-modal-input-title">Видалити аккаунт</p>
+    </div>
+    <hr class="blue-hr">
+    <div class="button-container">
+        <button class="cancel-btn" >Скасувати</button>
+        <button class="send-user-data-btn" type="submit" form = "user-data-form" >Зберегти</button>
+    </div>
+</div>

@@ -1,11 +1,10 @@
 import types
 
-def user_url_rules(app_module: types.ModuleType):
+def url_rules(app_module: types.ModuleType):
     app_module.user.add_url_rule(
         rule = '/registration',
         view_func = app_module.render_registration,
         methods = ['GET','POST']
-        
     )
 
     app_module.user.add_url_rule(
