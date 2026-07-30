@@ -1,6 +1,7 @@
 import flask 
 import os
 from flask_mailman import Mail
+import flask_socketio
 
 project = flask.Flask(
     import_name = "Project",
@@ -21,3 +22,4 @@ project.config['MAIL_PASSWORD'] = MAIL_PASSWORD
 project.config['MAIL_DEFAULT_SENDER'] = MAIL_SENDER
 
 mail = Mail(app = project)
+socket_app = flask_socketio.SocketIO(app = project)

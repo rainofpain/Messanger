@@ -1,0 +1,16 @@
+<div class="create-chat-modal modal hidden">
+    <div class="modal-header">
+        <p class= "modal-header-title">Налаштування</p>
+        <img class= "modal-header-cross" src="{{url_for('chat.static', filename = 'images/cross.svg')}}" alt="">
+    </div>
+    <form id = "create-chat-form" class="create-chat-form" action="" method="post">
+        <div class="modal-input-container">
+            <p class="modal-input-title">Назва чату</p>
+            <input class = "modal-input" type = "text" name = "chat_name" placeholder = "Введіть назву чату">
+        </div>
+    </form>
+    <div class="button-container">
+        <button class="cancel-btn" >Скасувати</button>
+        <button class="send-form-btn" type="submit" form = "create-chat-form" name="create-chat">Створити</button>
+    </div>
+</div>

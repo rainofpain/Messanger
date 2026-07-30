@@ -5,11 +5,15 @@
     <title>Chat</title>
     <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/chat.css' ) }}">
     <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/settings_modal.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/small_modals.css' ) }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css' ) }}">
 </head>
 <body>
     <div class= "modal-layout hidden">
         {% include 'settings_modal.html'%}
+        {% include 'create_chat_modal.html'%}
+        {% include 'delete_account.html'%}
+        {% include 'delete_chat.html'%}
     </div>
     <div class="chat-header">
         <div class="chat-logo-container">
@@ -28,8 +32,55 @@
             </div>
         </div>
     </div>
+    <main>
+        <div class="left-container">
+            <div class="search-input-container">
+                <input type="text" class = "search-input" placeholder="Пошук чатів...">
+            </div>
+            <hr class="blue-hr">
+            <div class="user-chat-container">
+                {% if user_chat %}
+                    <div class = "user-chat-container-header">
+                        <p>Ваш чат</p>
+                        <div class="blue-trash-img-size">
+                            <img class = "parent-height" id = "blue-trash" src="{{ url_for('chat.static', filename='images/blue_trash.svg' ) }}" alt="">
+                        </div>
+                    </div>
+                    <div class="user-chat-container-content" data-user-chat-name='{{user_chat.name}}'>
+                        <div class="chat-logo"></div>
+                        <div class="message-preview-container">
+                            <div class="message-preview-container-header">
+                                <p>{{user_chat.name}}</p>
+                            </div>
+                            <p class="message-preview-text"></p>
+                        </div>
+                    
+                    </div>
+                {% else %}
+                    <button class="create-chat-btn">
+                        <span class="create-chat-action">+</span>
+                        <span class="create-chat-text">Створити чат</span>
+                    </button>
+                {% endif %}
+            </div>
+            <hr class="blue-hr">
+            {% if chats %}
+                <div class="added-chats-container" data-chats='{{ chats|tojson }}'>
+                </div>
+            {% endif %}
+        </div>
+        <div class= "middle-container">
+            <div class="send-message-container">
+                <input type="text" id = "message_input">
+                <button id = "send_mesage" >send</button>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
     <script src="{{ url_for('chat.static', filename='js/maxDate.js' ) }}"></script>
     <script src="{{ url_for('chat.static', filename='js/settingsModal.js' ) }}"></script>
     <script src="{{ url_for('chat.static', filename='js/headerMenu.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/smallModals.js' ) }}"></script>
+    <script type = "module" src="{{ url_for('chat.static', filename='js/chat.js' ) }}"></script>
 </body>
 </html>

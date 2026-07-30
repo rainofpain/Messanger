@@ -3,7 +3,7 @@ import Project
 def main():
     try:
         Project.execute()
-        Project.project.run(debug = True, port= 8001)
+        Project.socket_app.run(app = Project.project, debug = True, port= 8000)
     except Exception as error:
         print(error)
 

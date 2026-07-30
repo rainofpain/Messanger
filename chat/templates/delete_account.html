@@ -1,0 +1,13 @@
+<div class="delete-account modal hidden">
+    <div class="modal-header">
+        <p class= "modal-header-title">Видалити аккаунт?</p>
+        <img class= "modal-header-cross" src="{{url_for('chat.static', filename = 'images/cross.svg')}}" alt="">
+    </div>
+        <div class="modal-input-container">
+            <p class="modal-input-title">Ви впевнені, що хочете видалити аккаунт?</p>
+        </div>
+    <div class="button-container">
+        <button class="cancel-btn" >Скасувати</button>
+        <button id = "delete-account" class="send-form-btn" type="submit">Видалити</button>
+    </div>
+</div>
