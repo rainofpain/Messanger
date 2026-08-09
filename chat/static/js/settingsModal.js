@@ -10,6 +10,7 @@ function addHideWithClick(button){
         const modalLayout = document.querySelector(".modal-layout");
         const modal = event.target.closest('.modal');
         modal.classList.add("hidden");
+        modalLayout.classList.add("hidden");
     });
 }
 

@@ -15,3 +15,4 @@ class User(DATABASE.Model, UserMixin):
 
     confirmed_email = DATABASE.Column(DATABASE.Boolean, default = False, nullable = False)
     is_admin = DATABASE.Column(DATABASE.Boolean, default = False)
+    messages = DATABASE.relationship('Message', back_populates='user')

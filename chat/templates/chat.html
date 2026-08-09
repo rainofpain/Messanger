@@ -14,6 +14,7 @@
         {% include 'create_chat_modal.html'%}
         {% include 'delete_account.html'%}
         {% include 'delete_chat.html'%}
+        {% include 'confirm_join_chat.html'%}
     </div>
     <div class="chat-header">
         <div class="chat-logo-container">
@@ -70,9 +71,35 @@
             {% endif %}
         </div>
         <div class= "middle-container">
-            <div class="send-message-container">
-                <input type="text" id = "message_input">
-                <button id = "send_mesage" >send</button>
+            <div class = "no-chat hidden">
+                <div class = "no-chat-logo-wrapper">
+                    <img class="parent-height" src="{{ url_for('chat.static', filename='images/no_chat_logo.svg' ) }}" alt="">
+                </div>
+                <div class= "no-chat-text">
+                    <p class="no-chat-action-text">Виберіть чат</p>
+                    <p class = "no-chat-hint-text">Приєднайтеся до кімнати та почніть розмову</p>
+                </div>
+            </div>
+            <div class="chat-wrapper ">
+                <div class="chat-header-container">
+                    <p class="chat-header-name">Chat</p>
+                    <div class="chat-header-nav">
+                        <img class="parent-height" src="{{ url_for('chat.static', filename='images/actions.svg' ) }}" alt="">
+                    </div>
+                </div>
+                <div class="chat-content-container">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message.user.email}}:{{message.text}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="send-message-container">
+                    <input class = "message-input" type="text" id = "message_input" placeholder = "Введіть повідомлення...">
+                    <button class = "send-message-btn" id = "send_message" data-user-email = "{{ user.email }}">
+                        <img class="parent-height" src="{{ url_for('chat.static', filename='images/send_message.svg' ) }}" alt="">
+                    </button>
+                </div>
             </div>
         </div>
     </main>
