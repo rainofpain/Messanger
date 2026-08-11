@@ -5,11 +5,28 @@ import flask_login
 
 from Project.settings import socket_app
 
+online_users = set()
 
 @socket_app.on("connect")
-def handle_send_message():
-    
-    print("Connected", flask.request.sid)
+def handle_connect():
+    current_user = flask_login.current_user
+    if current_user.is_authenticated:
+        if current_user.id not in online_users:
+            online_users.add(current_user.id)
+            emit("user_status_change", {"user_id": current_user.id, "status": "online"}, broadcast=True)
+        join_room(f"user_{current_user.id}")
+
+
+@socket_app.on("disconnect")
+def handle_disconnect():
+    current_user = flask_login.current_user
+    if current_user.is_authenticated:
+        leave_room(f"user_{current_user.id}")
+        room_sids = socket_app.server.manager.rooms.get("/", {}).get(f"user_{current_user.id}")
+
+        if not room_sids:
+            online_users.discard(current_user.id)
+            emit("user_status_change", {"user_id": current_user.id, "status": "offline"}, broadcast=True)
 
 @socket_app.on("join")
 def on_join(data: dict):

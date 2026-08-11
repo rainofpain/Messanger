@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/chat.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/settings_modal.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/small_modals.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/chat_member_details.css' ) }}">
+</head>
+<body>
+    <div class= "modal-layout hidden">
+        {% include 'settings_modal.html'%}
+        {% include 'create_chat_modal.html'%}
+        {% include 'delete_account.html'%}
+        {% include 'delete_chat.html'%}
+        {% include 'confirm_join_chat.html'%}
+    </div>
+    <div class="chat-header">
+        <div class="chat-logo-container">
+            <img class="icon-size" src="{{ url_for('chat.static', filename='images/chat_logo.svg' ) }}" alt="">
+            <p class = "logo-title">Chat</p>
+        </div>
+        <div class = "header-menu">
+            <div id = "notifications" class= "menu-option-container">
+                <img class="icon-size" src="{{ url_for('chat.static', filename='images/notifications.svg' ) }}" alt="">
+            </div>
+            <div id = "settings" class= "menu-option-container">
+                <img class="icon-size" src="{{ url_for('chat.static', filename='images/settings.svg' ) }}" alt="">
+            </div>
+            <div class= "menu-option-container">
+                <img class="parent-height" src="{{ url_for('chat.static', filename='images/avatar.svg' ) }}" alt="">
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="left-container">
+            <div class="search-input-container">
+                <input type="text" class = "search-input" placeholder="Пошук чатів...">
+            </div>
+            <hr class="blue-hr">
+            <div class="user-chat-container">
+                {% if user_chat %}
+                    <div class = "user-chat-container-header">
+                        <p>Ваш чат</p>
+                        <div class="blue-trash-img-size">
+                            <img class = "parent-height" id = "blue-trash" src="{{ url_for('chat.static', filename='images/blue_trash.svg' ) }}" alt="">
+                        </div>
+                    </div>
+                    <div class="chat-container-content" data-user-chat-name='{{user_chat.name}}' data-chat-id='{{user_chat.id}}'>
+                        <div class="chat-logo"></div>
+                        <div class="message-preview-container">
+                            <div class="message-preview-container-header">
+                                <p class="chat-name">{{user_chat.name}}</p>
+                            </div>
+                            <p class="message-preview-text"></p>
+                        </div>
+                    </div>
+                {% else %}
+                    <button class="create-chat-btn">
+                        <span class="create-chat-action">+</span>
+                        <span class="create-chat-text">Створити чат</span>
+                    </button>
+                {% endif %}
+            </div>
+            <hr class="blue-hr">
+            {% if chats %}
+                <div class="added-chats-container" data-chats='{{ chats|tojson }}'>
+                </div>
+            {% endif %}
+        </div>
+        <div class= "middle-container">
+            <div class="chat-wrapper">
+                <div class="chat-header-container">
+                    <p class="chat-header-name">
+                        {{current_chat.name}}
+                    </p>
+                    <div class="chat-header-nav">
+                        <img class="parent-height" src="{{ url_for('chat.static', filename='images/actions.svg' ) }}" alt="">
+                    </div>
+                </div>
+                <div class="chat-messages-container">
+                    {% if current_chat %}
+                        {% for message in current_chat.messages %}
+                        <div class= "chat-message {% if user.email == message.user.email %} my-message {% endif %}">
+                            <div class="chat-logo"></div>
+                            <div class="message-data-container">
+                                <p class="message-sender">{{message.user.email}}</p>
+                                <p class="message-text">{{message.text}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="send-message-container">
+                    <input class = "message-input" type="text" id = "message_input" placeholder = "Введіть повідомлення...">
+                    <button class = "send-message-btn" id = "send_message" data-user-email = "{{ user.email }}">
+                        <img class="parent-height" src="{{ url_for('chat.static', filename='images/send_message.svg' ) }}" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class= "left-container">
+            {% if current_chat %}
+                {% set stats = namespace(online_count = 0) %}
+
+                {% for member in current_chat.members %}
+                    {% if member.id in online_users %}
+                        {% set stats.online_count = stats.online_count + 1 %}
+                    {% endif %}
+                {% endfor %}
+                <div class="chat-members-header" data-members-online = "{{stats.online_count}}">
+                    <p class="chat-members-title">Користувачі</p>
+                    <div class="chat-members-stats-container">
+                        <div class="chat-members-stats">
+                            <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
+                            <p>{{current_chat.members|length}} користувачі</p>
+                        </div>
+                        <div class="chat-members-stats">
+                            <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
+                            <p class="members-online-count">{{stats.online_count}} онлайн</p>
+                        </div>
+                    </div>
+                </div>
+                {% for member in current_chat.members %}
+                    <div class="chat-member" data-member-id="{{member.id}}">
+                        <div class="chat-member-logo">
+                            <div class="status {% if member.id in online_users %} online {% endif %}"></div>
+                        </div>
+                        <p class="member-name">{{member.email}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="member-data-container hidden">
+                <div class="container-header">
+                    <img class="cross" src= "{{url_for('chat.static', filename = 'images/cross.svg')}}" alt="">
+                </div>
+                <div class="user-logo-container">
+                </div>
+                <div class="chat-member-credentials">
+                    <p class="chat-member-name copy-field">123</p>
+                    <p class="chat-member-username copy-field">123</p>
+                </div>
+                <div class="chat-member-details">
+                    <div class="details-field">
+                        <p class="details-header">Дата народження</p>
+                        <p class="member-birth-date copy-field">123</p>
+                    </div>
+                    <div class="details-field">
+                        <p class="details-header">Стать</p>
+                        <p class="member-gender copy-field"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="{{ url_for('chat.static', filename='js/maxDate.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/settingsModal.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/headerMenu.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/smallModals.js' ) }}"></script>
+    <script type = "module" src="{{ url_for('chat.static', filename='js/chat.js' ) }}"></script>
+</body>
+</html>

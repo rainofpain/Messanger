@@ -1,0 +1,69 @@
+.member-data-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6vh;
+    border-top: solid #E2E1EC 0.1vh;
+    width: 100%;
+    height: 29.8vh;
+    margin-top: auto;
+    align-items: center;
+    padding: 1vw;
+}
+.user-logo-container{
+    position: relative;
+    width: 6.2vh;
+    height: 6.2vh;
+    border-radius: 50%;
+    background-color: rgb(7, 99, 135);
+}
+.chat-member-credentials{
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.chat-member-username{
+
+}
+.chat-member-details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+.details-field{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+.details-header{
+    color: #999999;
+    font-size: 1.2vh;
+    font-family: var(--FontRegular);
+}
+.chat-member-name{
+    color: #333333;
+    font-size: 1.4vh;
+    font-family: var(--FontRegular);
+}
+.chat-member-username{
+    color:#007AFF;
+    font-weight: 500;
+    font-size: 1.4vh;
+    font-family: var(--FontMedium);
+}
+.member-birth-date, .member-gender{
+    color: #090909;
+    font-size: 1.4vh;
+    font-weight: 500;
+    font-family: var(--FontMedium);
+}
+.container-header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.cross{
+    height: 1.6vh;
+}
