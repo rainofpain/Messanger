@@ -9,11 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <a class = "auth-href-position" href="/authorization">
-        <button class="auth-redirect-btn">
-        Увійти
-        </button>
-    </a>
     <div class= "text-container">
         <p class="auth-title">Успіх</p>
         <span>
@@ -32,4 +27,11 @@
         </button>
     </a>
 
+{% endblock %}
+{% block redirect_button %}
+    <a class = "auth-href-position" href="/authorization">
+        <button class="auth-redirect-btn">
+        Увійти
+        </button>
+    </a>
 {% endblock %}

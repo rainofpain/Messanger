@@ -18,6 +18,8 @@
             <div class= "auth-img-wrapper">
                 <img class = "parent-height" src="{{ url_for('static', filename='images/auth_img.svg' ) }}" alt="">
             </div>
+            {% block redirect_button %}
+            {% endblock %}
         </main>
         {% block scripts %}
             

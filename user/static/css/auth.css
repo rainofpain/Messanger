@@ -29,3 +29,14 @@
     right: 4.3vw;
     top: 3.2vh;
 }
+
+@media (max-width: 431px) {
+  .auth-href-position{
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+    .auth-redirect-btn{
+        width: 30vw;
+    }
+}

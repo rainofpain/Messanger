@@ -10,12 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <a class = "auth-href-position" href="/registration">
-        <button class="auth-redirect-btn">
-        Зареєструватися
-        </button>
-    </a>
-
+  
     <p class="auth-title">Увійти в обліковий запис</p>
 
     <form class = "authorization-form" action = "" method = "post">
@@ -27,4 +22,11 @@
         <button class = "authorization-form-btn" type = "submit">Авторизуватися</button>
     </form>
     
+{% endblock %}
+{% block redirect_button %}
+    <a class = "auth-href-position" href="/registration">
+        <button class="auth-redirect-btn">
+        Зареєструватися
+        </button>
+    </a>
 {% endblock %}

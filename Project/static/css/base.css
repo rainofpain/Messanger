@@ -33,3 +33,16 @@ main{
     align-items: center;
     gap: 3.2vh;
 }
+
+@media (max-width: 431px) {
+  .logo-wrapper{
+    width: 49vw;;
+  }
+  .auth-img-wrapper{
+    height: 34.8vh;
+  }
+  main{
+    justify-content: flex-start;
+    padding-top: 1.7vh;
+  }
+}

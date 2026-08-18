@@ -16,6 +16,7 @@
         {% include 'delete_account.html'%}
         {% include 'delete_chat.html'%}
         {% include 'confirm_join_chat.html'%}
+        {% include 'chat_member_data_modal.html'%}
     </div>
     <div class="chat-header">
         <div class="chat-logo-container">
@@ -35,7 +36,7 @@
         </div>
     </div>
     <main>
-        <div class="left-container">
+        <div class="left-container section">
             <div class="search-input-container">
                 <input type="text" class = "search-input" placeholder="Пошук чатів...">
             </div>
@@ -70,9 +71,12 @@
                 </div>
             {% endif %}
         </div>
-        <div class= "middle-container">
+        <div class= "middle-container section">
             <div class="chat-wrapper">
                 <div class="chat-header-container">
+                    <div class="step-back-arrow">
+                        <img src="{{ url_for('chat.static', filename='images/arrow.svg' ) }}" alt="">
+                    </div>
                     <p class="chat-header-name">
                         {{current_chat.name}}
                     </p>
@@ -101,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <div class= "left-container">
+        <div class= "right-container section">
             {% if current_chat %}
                 {% set stats = namespace(online_count = 0) %}
 
@@ -110,16 +114,22 @@
                         {% set stats.online_count = stats.online_count + 1 %}
                     {% endif %}
                 {% endfor %}
+                
                 <div class="chat-members-header" data-members-online = "{{stats.online_count}}">
-                    <p class="chat-members-title">Користувачі</p>
-                    <div class="chat-members-stats-container">
-                        <div class="chat-members-stats">
-                            <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
-                            <p>{{current_chat.members|length}} користувачі</p>
-                        </div>
-                        <div class="chat-members-stats">
-                            <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
-                            <p class="members-online-count">{{stats.online_count}} онлайн</p>
+                    <div class="step-back-arrow">
+                        <img src="{{ url_for('chat.static', filename='images/arrow.svg' ) }}" alt="">
+                    </div>
+                    <div>
+                        <p class="chat-members-title">Користувачі</p>
+                        <div class="chat-members-stats-container">
+                            <div class="chat-members-stats">
+                                <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
+                                <p>{{current_chat.members|length}} користувачі</p>
+                            </div>
+                            <div class="chat-members-stats">
+                                <img class = "parent-height" src="{{ url_for('chat.static', filename='images/members.svg' ) }}" alt="">
+                                <p class="members-online-count">{{stats.online_count}} онлайн</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,6 +170,8 @@
     <script src="{{ url_for('chat.static', filename='js/settingsModal.js' ) }}"></script>
     <script src="{{ url_for('chat.static', filename='js/headerMenu.js' ) }}"></script>
     <script src="{{ url_for('chat.static', filename='js/smallModals.js' ) }}"></script>
+    <script src="{{ url_for('chat.static', filename='js/chatOpen.js' ) }}"></script>
     <script type = "module" src="{{ url_for('chat.static', filename='js/chat.js' ) }}"></script>
+    <script type = "module" src="{{ url_for('chat.static', filename='js/stepBackArrow.js' ) }}"></script>
 </body>
 </html>

@@ -23,3 +23,11 @@
     text-align: center;      
     line-height: 2.8vh;
 }
+@media (max-width: 431px) {
+  .text-container{
+    width: 83vw;
+  }
+  .email-redirect-btn{
+    width: 81vw;
+  }
+}

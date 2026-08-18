@@ -61,6 +61,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 .left-container{
     display: flex;
@@ -199,7 +200,7 @@ main{
     padding: 0 1.6vw;
     justify-content: space-between;
     align-items: center;
-    height: 6.4vh;
+    height: 6.7vh;
 }
 .chat-header-name{
     color: #1A1A1A;
@@ -290,10 +291,10 @@ display: none;
 }
 .chat-members-header{
     display: flex;
-    flex-direction: column;
-    padding: 0.8vh 1.5vw;
+    flex-direction: row;
+    padding: 0 1.5vw;
     height: 6.4vh;
-    justify-content: space-between;
+    align-items: center;
     width: 100%;
     border-bottom: solid #E5E5E5 0.1vh;
 }
@@ -343,4 +344,81 @@ display: none;
 }
 .online{
     background-color: #007AFF !important;
+}
+.right-container{
+    flex: 1;
+}
+.chat-header-nav{
+    height: 3.6vh;
+}
+.step-back-arrow{
+    display: none;
+}
+
+@media (max-width: 431px) {
+  .middle-container{
+      width: 100%;
+      display: none;
+    }
+    .right-container{
+        width: 100%;
+        display: none;
+    }
+    .left-container{
+        width: 100%;
+    }
+    .search-input{
+        padding: 1.1vh 11vw;
+        background-position: 6vw center;
+    }
+    .search-input-container{
+        padding: 1.4vh 3.7vw;
+    }
+    .chat-container-content, .user-chat-container-header{
+        padding: 0.8vh 3.7vw;
+    }
+    .chat-container-content{
+        gap: 4.6vw;
+    }
+    .chat-header{
+        padding: 0 4.6vw;
+    }
+    .chat-header-container{
+        padding: 0 3.7vw;
+    }
+    .send-message-container{
+        padding: 0 5.5vw;
+        gap: 2.7vw;
+    }
+    .chat-messages-container{
+        padding: 0 3.7vw;
+    }
+    .chat-message{
+        gap: 2.7vw;
+    }
+    .chat-members-header{
+        gap: 3.4vw;
+        padding: 0 3.7vw;
+    }
+    .chat-members-stats-container{
+        gap: 3vw;
+    }
+    .chat-member{
+        gap: 2.7vw;
+        padding: 0 3.2vw;
+    }
+    .step-back-arrow{
+        display:block;
+    }
+    .member-data-modal{
+        width: 85vw;
+        height: 32vh;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6vh;
+        align-items: center;
+        padding: 1vw;
+        background-color: #FFFFFF;
+        border: solid #E2E1EC 0.1vh;
+    }
 }

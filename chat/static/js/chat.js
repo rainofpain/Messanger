@@ -247,7 +247,7 @@ if (chatMembers){
                     .then(data => {
                         let memberName = "Anonymous";
                         let memberSurname = "";
-                        let memberUsername = "no_username";
+                        let memberUsername = "";
                         let memberGender = "unknown";
 
                         if (data.member_name){
@@ -271,19 +271,41 @@ if (chatMembers){
                             }
                         }
                         
-                        const memberDataContainer = document.querySelector(".member-data-container");
-                        memberDataContainer.classList.remove("hidden");
-
-                        const cross = memberDataContainer.querySelector(".cross");
-                        cross.addEventListener("click", () => {memberDataContainer.classList.add("hidden");});
-
-                        const chatMemberName = memberDataContainer.querySelector(".chat-member-name");
-                        const chatMemberUsername = memberDataContainer.querySelector(".chat-member-username");
-                        const chatMemberGender = memberDataContainer.querySelector(".member-gender");
-                        
-                        chatMemberName.innerHTML = `${memberName} ${memberSurname}`;
-                        chatMemberUsername.innerHTML = `@${memberUsername}`;
-                        chatMemberGender.innerHTML = memberGender;
+                        const screenWidth = window.screen.width;
+                        if (screenWidth <= 430){
+                            modalLayout.classList.remove("hidden");
+                            const memberDataModal = document.querySelector(".member-data-modal");
+                            memberDataModal.classList.remove("hidden");
+    
+                            const cross = memberDataModal.querySelector(".cross");
+                            cross.addEventListener("click", () => {
+                                memberDataModal.classList.add("hidden");
+                                modalLayout.classList.add("hidden");
+                            });
+    
+                            const chatMemberName = memberDataModal.querySelector(".chat-member-name");
+                            const chatMemberUsername = memberDataModal.querySelector(".chat-member-username");
+                            const chatMemberGender = memberDataModal.querySelector(".member-gender");
+                            
+                            chatMemberName.innerHTML = `${memberName} ${memberSurname}`;
+                            chatMemberUsername.innerHTML = `@${memberUsername}`;
+                            chatMemberGender.innerHTML = memberGender;
+                        }
+                        else{
+                            const memberDataContainer = document.querySelector(".member-data-container");
+                            memberDataContainer.classList.remove("hidden");
+    
+                            const cross = memberDataContainer.querySelector(".cross");
+                            cross.addEventListener("click", () => {memberDataContainer.classList.add("hidden");});
+    
+                            const chatMemberName = memberDataContainer.querySelector(".chat-member-name");
+                            const chatMemberUsername = memberDataContainer.querySelector(".chat-member-username");
+                            const chatMemberGender = memberDataContainer.querySelector(".member-gender");
+                            
+                            chatMemberName.innerHTML = `${memberName} ${memberSurname}`;
+                            chatMemberUsername.innerHTML = `@${memberUsername}`;
+                            chatMemberGender.innerHTML = memberGender;
+                        }
                     });
                 }
             });

@@ -21,3 +21,9 @@
     border: none;
     padding: 0.8vh 0;
 }
+@media (max-width: 431px) {
+  .registration{
+    width: 90vw;
+    gap: 1.4vh;
+  }
+}
